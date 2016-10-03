@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../scale.css">
+	</head>
+	<body>
+		<div id="chart"></div>
+
+		<script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="../scale.js"></script>
+		
+		<script>
+			$.getJSON('./votes.json', function(res) {
+				var items = [];
+				 
+				$.each(res, function(key, val){
+					items.push({
+						value: val["моя оценка"],
+						title: val["русскоязычное название"]
+					});
+				});
+
+				$("#chart").linechart({
+					data: items,
+					width: 50, 
+					height: 10,
+					boxSize: 14,
+					line: true,
+					theme: "default"
+				});
+			});
+		</script>
+	</body>
+</html>

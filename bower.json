@@ -1,0 +1,39 @@
+{
+  "name": "angular-scale",
+  "main": "scale.js",
+  "version": "2.1.4",
+  "homepage": "https://github.com/kirillstepkin/scale",
+  "authors": [
+    "Kirill Stepkin <kirillstyopkin@gmail.com>"
+  ],
+  "description": "Angular plugin for building a scale of items. Chart ruler completely on HTML/CSS. Inspired by kinopoisk.ru chart",
+  "keywords": [
+    "angular",
+    "angular-scale",
+    "angularjs",
+    "scale",
+    "items",
+    "dataset",
+    "kinopoisk",
+    "chart",
+    "line-chart",
+    "bar-chart",
+    "marks",
+    "axis",
+    "calendar-view",
+    "pyramid",
+    "progress-chart",
+    "showreel",
+    "visualisation",
+    "diagram",
+    "graph"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
