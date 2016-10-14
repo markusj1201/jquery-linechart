@@ -40,25 +40,25 @@ npm install jquery-linechart
 ```
 
 ```javascript
-	$.getJSON('./votes.json', function(res) {
-		var items = [];
+$.getJSON('./votes.json', function(res) {
+	var items = [];
 
-		$.each(res, function(key, val){
-			items.push({
-				value: val["rank"],
-				title: val["title"]
-			});
-		});
-
-		$("#chart").linechart({
-			data: items,
-			width: 50, 
-			height: 10,
-			boxSize: 16,
-			line: true,
-			theme: "purple"
+	$.each(res, function(key, val){
+		items.push({
+			value: val["rank"],
+			title: val["title"]
 		});
 	});
+
+	$("#chart").linechart({
+		data: items,
+		width: 50, 
+		height: 10,
+		boxSize: 16,
+		line: true,
+		theme: "purple"
+	});
+});
 ```
 
 ### Options
