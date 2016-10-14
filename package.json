@@ -1,6 +1,6 @@
 {
   "name": "jquery-linechart",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JQuery plugin for building a linechart. Chart ruler completely on HTML/CSS/JS. Inspired by kinopoisk.ru chart. Feel free for contribute.",
   "keywords": [
     "jquery",
@@ -22,7 +22,7 @@
     "diagram",
     "graph"
   ],
-  "repository": "kirillstepkin/query-linechart",
+  "repository": "kirillstepkin/jquery-linechart",
   "main": "scale.js",
   "author": {
     "name": "Kirill Stepkin",
