@@ -1,16 +1,15 @@
 {
-  "name": "angular-scale",
+  "name": "jquery-linechart",
   "main": "scale.js",
-  "version": "2.1.4",
-  "homepage": "https://github.com/kirillstepkin/scale",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kirillstepkin/jquery-linechart",
   "authors": [
     "Kirill Stepkin <kirillstyopkin@gmail.com>"
   ],
-  "description": "Angular plugin for building a scale of items. Chart ruler completely on HTML/CSS. Inspired by kinopoisk.ru chart",
+  "description": "JQuery plugin for building a linechart. Chart ruler completely on HTML/CSS. Inspired by kinopoisk.ru chart",
   "keywords": [
-    "angular",
-    "angular-scale",
-    "angularjs",
+    "jquery",
+    "jquery-linechart",
     "scale",
     "items",
     "dataset",

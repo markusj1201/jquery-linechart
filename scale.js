@@ -39,15 +39,19 @@ $.fn.linechart = function(params) {
   renderRulers();
 
   function renderRulers() {
-    var rulerCont = chart;
-    rulerCont[0].className = "ruler-container " + theme;   
+    var rulerCont = chart[0];
+    rulerCont.className = "ruler-container " + theme;   
+
+    var chartFragment = document.createDocumentFragment();
 
     marks.forEach(function(mark, markNum) {
       var rulerItem = document.createElement('div');
       rulerItem.className = "ruler-row"; 
       renderRow(rulerItem, mark, markNum);
-      rulerCont[0].appendChild(rulerItem);
+      chartFragment.appendChild(rulerItem);
     });
+
+    rulerCont.appendChild(chartFragment);
   }
 
   function renderRow(rulerItem, mark, markNum) {
@@ -59,17 +63,23 @@ $.fn.linechart = function(params) {
     for (var i=0; i < SCALE_HEIGHT; i++) {
       var markItem = document.createElement('div');
       markItem.setAttribute("data-type", mark.value - 1 == i ? mark.value : i + 1);
-      markItem.className = SCALE_HEIGHT - mark.value == i ? "mark pinned" : "mark empty";
       markItem.setAttribute("style", 'width: ' + style.width + '; height: ' + style.height + ';');
 
-      if (SCALE_HEIGHT - mark.value <= i) markItem.className += " painted";
+      if (SCALE_HEIGHT - mark.value > i) markItem.className = "mark empty";
+      if (SCALE_HEIGHT - mark.value == i) markItem.className = "mark";
+      if (SCALE_HEIGHT - mark.value < i) markItem.className = "mark painted";
 
-      if (SCALE_HEIGHT - mark.value == i && markNum < marks.length - 1) {
+      if (SCALE_HEIGHT - mark.value == i && markNum < marks.length - 1 && hasLine) {
         var line = document.createElement('div');
         line.className = "line";
         var opts = calculateLineOptions(mark.value, marks[markNum+1].value);
         line.setAttribute("style", 'width: ' + opts.width + '; transform: ' + opts.transform + '; top: ' + opts.top + '; left: ' + opts.left + ';');
         markItem.appendChild(line);
+        
+        var tooltip = document.createElement('div');
+        tooltip.className = "tooltiptext";
+        tooltip.innerHTML = "<div>" + mark.value + "</div>" + "<div>" + mark.title + "</div>";
+        markItem.appendChild(tooltip);
       }
 
       rulerItem.appendChild(markItem);
