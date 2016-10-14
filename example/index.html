@@ -15,6 +15,7 @@
 				var items = [];
 				 
 				$.each(res, function(key, val){
+					console.log(val["моя оценка"])
 					items.push({
 						value: val["моя оценка"],
 						title: val["русскоязычное название"]
@@ -25,7 +26,7 @@
 					data: items,
 					width: 50, 
 					height: 10,
-					boxSize: 14,
+					boxSize: 20,
 					line: true,
 					theme: "default"
 				});

@@ -40,7 +40,7 @@ $.fn.linechart = function(params) {
 
   function renderRulers() {
     var rulerCont = chart;
-    rulerCont[0].className = "ruler-container";   
+    rulerCont[0].className = "ruler-container " + theme;   
 
     marks.forEach(function(mark, markNum) {
       var rulerItem = document.createElement('div');
@@ -51,19 +51,25 @@ $.fn.linechart = function(params) {
   }
 
   function renderRow(rulerItem, mark, markNum) {
+    var style = {
+     width: BLOCK_WIDTH + 'px',
+     height: BLOCK_WIDTH + 'px'
+    };
+
     for (var i=0; i < SCALE_HEIGHT; i++) {
       var markItem = document.createElement('div');
-      markItem.setAttribute("data-type", mark.type - 1 == i ? mark.type : i + 1);
-      markItem.className = mark.type - 1 == i ? "mark pinned" : "mark empty";
+      markItem.setAttribute("data-type", mark.value - 1 == i ? mark.value : i + 1);
+      markItem.className = SCALE_HEIGHT - mark.value == i ? "mark pinned" : "mark empty";
+      markItem.setAttribute("style", 'width: ' + style.width + '; height: ' + style.height + ';');
 
-      if (mark.type - 1 <= i) markItem.className += " painted";
+      if (SCALE_HEIGHT - mark.value <= i) markItem.className += " painted";
 
-      if (mark.type - 1 == i && markNum < marks.length - 1) {
-        var lineItem = document.createElement('div');
-        lineItem.className = "line";
-        var lineOpts = calculateLineOptions(i+1, marks[markNum+1].type);
-        lineItem.setAttribute("style", `width: ${lineOpts.width}; transform: ${lineOpts.transform};`);
-        markItem.appendChild(lineItem);
+      if (SCALE_HEIGHT - mark.value == i && markNum < marks.length - 1) {
+        var line = document.createElement('div');
+        line.className = "line";
+        var opts = calculateLineOptions(mark.value, marks[markNum+1].value);
+        line.setAttribute("style", 'width: ' + opts.width + '; transform: ' + opts.transform + '; top: ' + opts.top + '; left: ' + opts.left + ';');
+        markItem.appendChild(line);
       }
 
       rulerItem.appendChild(markItem);
@@ -71,16 +77,19 @@ $.fn.linechart = function(params) {
   }
 
   function calculateLineOptions(currentMark, nextMark) {
+    console.log(currentMark, nextMark)
     var AC = BLOCK_WIDTH, 
         BC = Math.abs(nextMark - currentMark) * BLOCK_WIDTH;
     var AB = Math.hypot( AC, BC );
     var angleA = Math.fround( Math.asin( BC / AB ) * 180 / Math.PI);
 
-    if (nextMark < currentMark) angleA = -angleA;
+    if (nextMark > currentMark) angleA = -angleA;
 
     return {
       width: AB + 'px',
-      transform: 'rotate(' + angleA + 'deg)'
+      transform: 'rotate(' + angleA + 'deg)',
+      top: parseInt(BLOCK_WIDTH/2) + 'px',
+      left: parseInt(BLOCK_WIDTH/2) + 'px'
     };
   }
 };
