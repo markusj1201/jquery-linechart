@@ -1,0 +1,4 @@
+# If you receive an ssl error from pypi.org run the following on pkg exception from ele.cmd
+# >>  pip install nodejs --trusted-host pypi.org --trusted-host files.pythonhosted.org
+# NPM
+#>> npm config set registry http://registry.npmjs.org/ 
